@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CH">
 
 <head>
   <meta charset="UTF-8">
@@ -10,11 +10,19 @@
 </head>
 
 <body>
-  <h1>Welcome Test</h1>
-  <main>
-    <p>This is the home page</p>
-    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGY5MnNrdTBqOWptdHk0YWh3d2l1NmZwYW56Y2gwNDl5bzhkMm95dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/11kEuHSQAXXiGQ/giphy.gif" alt="">
-  </main>
+  <section class="sidebar">
+      <ul>
+          <li><span class="icon">🏠</span><span class="text">Home</span></li>
+          <li><span class="icon">📄</span><span class="text">About</span></li>
+          <li><span class="icon">📞</span><span class="text">Contact</span></li>
+      </ul>
+      <button id="toggleButton">➡️</button>
+  </section>
+
+    <h1 id="greeting">Hi!</h1>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 
 </html>
