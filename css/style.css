@@ -6,7 +6,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background: #161A30;
+  background: radial-gradient(circle at center, #1A2030 0%, #161A30 100%);
   color: #F0ECE5;
 }
 
@@ -54,12 +54,13 @@ body {
 
 #greeting {
   color: #F0ECE5;
-  position: absolute; 
-  top: 50%; 
-  left: 50%; 
-  transform: 
-  translate(-50%, -50%); 
-  font-size: 15rem; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:
+    translate(-50%, -50%);
+  font-size: 15rem;
   text-align: center
 }
+
 /*# sourceMappingURL=style.css.map */
