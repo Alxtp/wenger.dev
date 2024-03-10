@@ -4,11 +4,22 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   font-family: "Roboto", sans-serif;
-  background: radial-gradient(circle at center, #1A2030 0%, #161A30 100%);
+  background: #161A30;
   color: #F0ECE5;
   height: 100%;
+}
+html a,
+body a {
+  text-decoration: none;
+}
+
+.noto-color emoji-regular {
+  font-family: "Noto Color Emoji", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .topbar {
@@ -18,9 +29,26 @@ html, body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0 5%; 
+  padding: 0 5%;
+  color: #B6BBC4;
 }
-
+.topbar a {
+  color: inherit;
+  position: relative;
+}
+.topbar a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #B6BBC4;
+  transition: width 0.3s;
+}
+.topbar a:hover::after {
+  width: 100%;
+}
 
 .topbar ul {
   list-style: none;
@@ -37,10 +65,37 @@ html, body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform:
-    translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   font-size: 15rem;
-  text-align: center
+  text-align: center;
 }
+
+.services-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+.services-overview .service {
+  background-color: #31304D;
+  border: 3px solid #B6BBC4;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+.services-overview .service .emoji-icon {
+  font-size: 100px;
+}
+.services-overview .service .img-icon {
+  width: 100px;
+  height: 100px;
+}
+.services-overview .service .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+
 
 /*# sourceMappingURL=style.css.map */

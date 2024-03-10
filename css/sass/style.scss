@@ -1,10 +1,113 @@
+$primary: #161A30;
+$on_secondary: #B6BBC4;
+$on_primary: #F0ECE5;
+$secondary: #31304D;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-h1 {
-  font-size: 3rem;
-  color: rgb(93, 10, 170);
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  background: $primary;
+  color: $on_primary;
+  height: 100%;
+
+  a {
+    text-decoration: none;
+  }
 }
+
+.noto-color emoji-regular {
+  font-family: "Noto Color Emoji", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.topbar {
+  background: $secondary;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 5%;
+  color: $on_secondary;
+
+  a {
+    color: inherit;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $on_secondary;
+      transition: width 0.3s;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}
+
+.topbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.topbar .text {
+  font-size: 1.5rem;
+}
+
+#greeting {
+  color: $on_primary;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:
+    translate(-50%, -50%);
+  font-size: 15rem;
+  text-align: center
+}
+
+.services-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+
+  .service {
+    background-color: $secondary;
+    border: 3px solid $on_secondary;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+
+    .emoji-icon {
+      font-size: 100px;
+    }
+
+    .img-icon {
+      width: 100px;
+      height: 100px;
+    }
+
+    .title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
