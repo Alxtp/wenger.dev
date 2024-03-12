@@ -49,6 +49,16 @@ body a {
 .topbar a:hover::after {
   width: 100%;
 }
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+  .topbar a {
+    margin-bottom: 10px;
+  }
+}
 
 .topbar ul {
   list-style: none;
@@ -88,8 +98,8 @@ body a {
   font-size: 100px;
 }
 .services-overview .service .img-icon {
-  width: 212px;
-  height: 133px;
+  width: 8em;
+  height: auto;
 }
 .services-overview .service .title {
   font-size: 1.25rem;

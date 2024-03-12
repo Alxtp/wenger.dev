@@ -56,7 +56,18 @@ body {
       width: 100%;
     }
   }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  
+    a {
+      margin-bottom: 10px;
+    }
+  }
 }
+
+
 
 .topbar ul {
   list-style: none;
@@ -98,8 +109,8 @@ body {
     }
 
     .img-icon {
-      width: 212px;
-      height: 133px;
+      width: 8em;
+      height: auto;
     }
 
     .title {
