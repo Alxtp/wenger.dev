@@ -88,13 +88,13 @@ body a {
   font-size: 100px;
 }
 .services-overview .service .img-icon {
-  width: 100px;
-  height: 100px;
+  width: 212px;
+  height: 133px;
 }
 .services-overview .service .title {
   font-size: 1.25rem;
   font-weight: bold;
-  margin-top: 10px;
+  padding: 5px;
 }
 
 
