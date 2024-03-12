@@ -86,9 +86,10 @@ body {
   padding: 20px;
 
   .service {
-    background-color: $secondary;
-    border: 3px solid $on_secondary;
-    border-radius: 10px;
+    border-radius: 26px;
+    background: linear-gradient(45deg, #2c2b45, #343352);
+    box-shadow:  5px -5px 10px #2c2b45, -5px 5px 10px #363555;
+    border: $on_secondary 3px solid;
     padding: 20px;
     text-align: center;
 

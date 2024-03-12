@@ -77,9 +77,10 @@ body a {
   padding: 20px;
 }
 .services-overview .service {
-  background-color: #31304D;
-  border: 3px solid #B6BBC4;
-  border-radius: 10px;
+  border-radius: 26px;
+  background: linear-gradient(45deg, #2c2b45, #343352);
+  box-shadow: 5px -5px 10px #2c2b45, -5px 5px 10px #363555;
+  border: #B6BBC4 3px solid;
   padding: 20px;
   text-align: center;
 }
