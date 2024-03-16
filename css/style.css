@@ -58,14 +58,19 @@ body a {
     padding: 10px;
   }
 }
+@media (max-width: 640px) {
+  .topbar {
+    font-size: 1rem;
+  }
+}
 
 #greeting {
   color: #F0ECE5;
   position: absolute;
-  top: 50%;
+  top: calc(50% + 5rem);
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 15rem;
+  font-size: 25vmax;
   text-align: center;
 }
 

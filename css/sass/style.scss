@@ -65,17 +65,21 @@ body {
     height: auto;
     padding: 10px;
   }
+
+  @media (max-width: 640px) {
+    font-size: 1rem;
+  }
 }
 
 #greeting {
   color: $on_primary;
   position: absolute;
-  top: 50%;
+  top: calc(50% + 5rem);
   left: 50%;
   transform:
     translate(-50%, -50%);
-  font-size: 15rem;
-  text-align: center
+  font-size: 25vmax;
+  text-align: center;
 }
 
 .services-overview {
@@ -111,8 +115,6 @@ body {
       width: 8rem;
       height: 8rem;
     }
-
-
 
     &:hover {
       background: $on_secondary;
