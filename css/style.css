@@ -16,15 +16,10 @@ body a {
   text-decoration: none;
 }
 
-.noto-color emoji-regular {
-  font-family: "Noto Color Emoji", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 .topbar {
   background: #31304D;
-  height: 10%;
+  font-size: 1.5rem;
+  height: 5rem;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -49,25 +44,18 @@ body a {
 .topbar a:hover::after {
   width: 100%;
 }
-@media (max-width: 768px) {
-  .topbar {
-    flex-direction: column;
-    height: auto;
-    padding: 10px;
-  }
-  .topbar a {
-    margin-bottom: 10px;
-  }
-}
-
 .topbar ul {
   list-style: none;
   display: flex;
   gap: 20px;
 }
-
-.topbar .text {
-  font-size: 1.5rem;
+@media (max-width: 768px) {
+  .topbar {
+    font-size: 1.25rem;
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
 }
 
 #greeting {

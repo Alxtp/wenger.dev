@@ -21,15 +21,10 @@ body {
   }
 }
 
-.noto-color emoji-regular {
-  font-family: "Noto Color Emoji", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 .topbar {
   background: $secondary;
-  height: 10%;
+  font-size: 1.5rem;
+  height: 5rem;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -56,27 +51,19 @@ body {
       width: 100%;
     }
   }
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+
   @media (max-width: 768px) {
+    font-size: 1.25rem;
     flex-direction: column;
     height: auto;
     padding: 10px;
-  
-    a {
-      margin-bottom: 10px;
-    }
   }
-}
-
-
-
-.topbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.topbar .text {
-  font-size: 1.5rem;
 }
 
 #greeting {
@@ -99,7 +86,7 @@ body {
   .service {
     border-radius: 26px;
     background: linear-gradient(45deg, #2c2b45, #343352);
-    box-shadow:  5px -5px 10px #2c2b45, -5px 5px 10px #363555;
+    box-shadow: 5px -5px 10px #2c2b45, -5px 5px 10px #363555;
     border: $on_secondary 3px solid;
     padding: 20px;
     text-align: center;
@@ -119,7 +106,6 @@ body {
       padding: 5px;
 
     }
-
   }
 }
 
