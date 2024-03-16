@@ -14,6 +14,7 @@ body {
 html a,
 body a {
   text-decoration: none;
+  color: inherit;
 }
 
 .topbar {
@@ -39,7 +40,7 @@ body a {
   width: 0;
   height: 2px;
   background: #B6BBC4;
-  transition: width 0.3s;
+  transition: width 0.2s;
 }
 .topbar a:hover::after {
   width: 100%;
@@ -71,8 +72,8 @@ body a {
 .services-overview {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  gap: 2rem;
+  padding: 1.5rem;
 }
 .services-overview .service {
   border-radius: 26px;
@@ -82,17 +83,28 @@ body a {
   padding: 20px;
   text-align: center;
 }
-.services-overview .service .emoji-icon {
-  font-size: 100px;
-}
-.services-overview .service .img-icon {
-  width: 8em;
-  height: auto;
-}
 .services-overview .service .title {
   font-size: 1.25rem;
   font-weight: bold;
+  color: #B6BBC4;
   padding: 5px;
+}
+.services-overview .service .emoji-icon {
+  display: inline-block;
+  width: 8rem;
+  height: 8rem;
+  font-size: 6rem;
+  line-height: 8rem;
+}
+.services-overview .service .img-icon {
+  width: 8rem;
+  height: 8rem;
+}
+.services-overview .service:hover {
+  background: #B6BBC4;
+}
+.services-overview .service:hover .title {
+  color: #31304D;
 }
 
 

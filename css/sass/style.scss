@@ -18,6 +18,7 @@ body {
 
   a {
     text-decoration: none;
+    color: inherit;
   }
 }
 
@@ -44,7 +45,7 @@ body {
       width: 0;
       height: 2px;
       background: $on_secondary;
-      transition: width 0.3s;
+      transition: width 0.2s;
     }
 
     &:hover::after {
@@ -80,8 +81,8 @@ body {
 .services-overview {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  gap: 2rem;
+  padding: 1.5rem;
 
   .service {
     border-radius: 26px;
@@ -91,19 +92,34 @@ body {
     padding: 20px;
     text-align: center;
 
-    .emoji-icon {
-      font-size: 100px;
-    }
-
-    .img-icon {
-      width: 8em;
-      height: auto;
-    }
-
     .title {
       font-size: 1.25rem;
       font-weight: bold;
+      color: $on_secondary;
       padding: 5px;
+    }
+
+    .emoji-icon {
+      display: inline-block;
+      width: 8rem;
+      height: 8rem;
+      font-size: 6rem;
+      line-height: 8rem;
+    }
+
+    .img-icon {
+      width: 8rem;
+      height: 8rem;
+    }
+
+
+
+    &:hover {
+      background: $on_secondary;
+
+      .title {
+        color: $secondary;
+      }
 
     }
   }
