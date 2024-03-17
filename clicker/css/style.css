@@ -1,0 +1,21 @@
+.clicker {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+#clicker {
+  font-size: 10rem;
+  background: none;
+  border: none;
+  z-index: 1;
+}
+
+#counter {
+  font-size: 5rem;
+  color: #B6BBC4;
+}
+
+/*# sourceMappingURL=style.css.map */
