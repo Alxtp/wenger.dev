@@ -3,22 +3,79 @@ $on_secondary: #B6BBC4;
 $on_primary: #F0ECE5;
 $secondary: #31304D;
 
-.clicker {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 60vh;
+.game {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.shop {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  align-items: center;
+  justify-content: start;
+  width: 25rem;
+  height: auto;
+  border-radius: 15px;
+  background: linear-gradient(45deg, #2c2b45, #343352);
+  box-shadow: 5px -5px 10px #2c2b45, -5px 5px 10px #363555;
+  border: $on_secondary 3px solid;
+  margin: 2rem;
+  padding: 1rem;
+  gap: 1rem;
+
+  .shop-item {
+    display: grid;
+    grid-template-rows: auto auto;
+
+    .icon-container {
+      grid-column: 1;
+      font-size: 3em;
+      justify-self: center;
+
+    }
+
+    .item-details {
+      grid-column: 2;
+
+      button {
+        background-color: $primary;
+        color: $on_primary;
+        border-radius: 5px;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 0.5rem;
+        cursor: pointer;
+
+
+        &:hover {
+          background-color: $on_primary;
+          color: $primary;
+        }
+      }
+    }
+
   }
+}
+
+.clicker {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 #clicker {
-    font-size: 10rem;
-    background: none;
-    border: none;
-    z-index: 1;
+  font-size: 10rem;
+  background: none;
+  border: none;
+  z-index: 1;
 }
 
 #counter {
-    font-size: 5rem;
-    color: $on_secondary;
+  font-size: 5rem;
+  color: $on_secondary;
 }

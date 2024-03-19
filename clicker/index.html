@@ -2,32 +2,75 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍌</text></svg>">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Banana Clicker</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍌</text></svg>">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Banana Clicker</title>
 </head>
 
 <body>
-    <section class="topbar">
-        <ul>
-            <li><a href="/"><span class="text">Home</span></a></li>
-            <li><a href="/about"><span class="text">About</span></a></li>
-            <li><a href="/contact"><span class="text">Contact</span></a></li>
-            <li><a href="/services"><span class="text">Services</span></a></li>
-        </ul>
-    </section>
-    <section>
-        <div class="clicker">
-            <button id="clicker">🍌</button>
-            <p id="counter">0</p>
+  <section class="topbar">
+    <ul>
+      <li><a href="/"><span class="text">Home</span></a></li>
+      <li><a href="/about"><span class="text">About</span></a></li>
+      <li><a href="/contact"><span class="text">Contact</span></a></li>
+      <li><a href="/services"><span class="text">Services</span></a></li>
+    </ul>
+  </section>
+  <section class="game">
+    <div class="shop">
+      <h2>Shop</h2>
+      <div class="shop-item">
+        <div class="icon-container">
+          <span>🐒</span>
         </div>
-    </section>
-    <script src="js/clicker.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <div class="item-details">
+          <h3>Monkey</h3>
+          <p>Generates 1 banana per second.</p>
+          <button id="monkey">100🍌</button>
+        </div>
+      </div>
+      <div class="shop-item">
+        <div class="icon-container">
+          <span>🦍</span>
+        </div>
+        <div class="item-details">
+          <h3>Gorilla</h3>
+          <p>Generates 5 bananas per second.</p>
+          <button id="gorilla">870🍌</button>
+        </div>
+      </div>
+      <div class="shop-item">
+        <div class="icon-container">
+          <span>🦧</span>
+        </div>
+        <div class="item-details">
+          <h3>Orangutan</h3>
+          <p>Generates 10 bananas per second.</p>
+          <button id="orangutan">6800🍌</button>
+        </div>
+      </div>
+      <div class="shop-item">
+        <div class="icon-container">
+          <span>🦥</span>
+        </div>
+        <div class="item-details">
+          <h3>Sloth</h3>
+          <p>Generates 100 bananas per second.</p>
+          <button id="orangutan">94000🍌</button>
+        </div>
+      </div>
+    </div>
+    <div class="clicker">
+      <button id="clicker">🍌</button>
+      <p id="counter">0</p>
+    </div>
+  </section>
+  <script src="js/clicker.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </body>
 
 </html>

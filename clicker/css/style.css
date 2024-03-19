@@ -1,9 +1,58 @@
+.game {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.shop {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  align-items: center;
+  justify-content: start;
+  width: 25rem;
+  height: auto;
+  border-radius: 15px;
+  background: linear-gradient(45deg, #2c2b45, #343352);
+  box-shadow: 5px -5px 10px #2c2b45, -5px 5px 10px #363555;
+  border: #B6BBC4 3px solid;
+  margin: 2rem;
+  padding: 1rem;
+  gap: 1rem;
+}
+.shop .shop-item {
+  display: grid;
+  grid-template-rows: auto auto;
+}
+.shop .shop-item .icon-container {
+  grid-column: 1;
+  font-size: 3em;
+  justify-self: center;
+}
+.shop .shop-item .item-details {
+  grid-column: 2;
+}
+.shop .shop-item .item-details button {
+  background-color: #161A30;
+  color: #F0ECE5;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+.shop .shop-item .item-details button:hover {
+  background-color: #F0ECE5;
+  color: #161A30;
+}
+
 .clicker {
+  flex: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 60vh;
+  justify-content: center;
 }
 
 #clicker {
