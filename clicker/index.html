@@ -20,54 +20,17 @@
       <li><a href="/services"><span class="text">Services</span></a></li>
     </ul>
   </section>
-  <section class="game">
-    <div class="shop">
-      <h2>Shop</h2>
-      <div class="shop-item">
-        <div class="icon-container">
-          <span>🐒</span>
-        </div>
-        <div class="item-details">
-          <h3>Monkey</h3>
-          <p>Generates 1 banana per second.</p>
-          <button id="monkey">100🍌</button>
-        </div>
-      </div>
-      <div class="shop-item">
-        <div class="icon-container">
-          <span>🦍</span>
-        </div>
-        <div class="item-details">
-          <h3>Gorilla</h3>
-          <p>Generates 5 bananas per second.</p>
-          <button id="gorilla">870🍌</button>
-        </div>
-      </div>
-      <div class="shop-item">
-        <div class="icon-container">
-          <span>🦧</span>
-        </div>
-        <div class="item-details">
-          <h3>Orangutan</h3>
-          <p>Generates 10 bananas per second.</p>
-          <button id="orangutan">6800🍌</button>
-        </div>
-      </div>
-      <div class="shop-item">
-        <div class="icon-container">
-          <span>🦥</span>
-        </div>
-        <div class="item-details">
-          <h3>Sloth</h3>
-          <p>Generates 100 bananas per second.</p>
-          <button id="sloth">94000🍌</button>
-        </div>
+  <section class="row">
+    <div class="col-2 col-s-3">
+      <div class="shop">
+        <h2>Shop</h2>
       </div>
     </div>
-    <div class="clicker">
+    <div class="clicker col-2 col-s-3">
       <button id="clicker">🍌</button>
       <p id="counter">0</p>
     </div>
+    <section class="items col-2 col-s-6"></section>
   </section>
   <script src="js/clicker.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

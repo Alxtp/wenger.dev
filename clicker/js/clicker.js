@@ -1,15 +1,19 @@
-let bananas = 0;
+let bananas = 1000;
 
 let items = {
-  monkey: { count: 0, cost: 100, generates: 1, icon: "🐒" },
-  gorilla: { count: 0, cost: 870, generates: 5, icon: "🦍" },
-  orangutan: { count: 0, cost: 6800, generates: 10, icon: "🦧" },
-  sloth: { count: 0, cost: 94000, generates: 100, icon: "🦥" },
+  click: { name: "Click Force", description: "Generate 1 banana more per click", count: 0, cost: 50, generates: 0, icon: "✖️" },
+  monkey: { name: "Monkey", description: "Generates 1 banana per second", count: 0, cost: 100, generates: 1, icon: "🐒" },
+  gorilla: { name: "Gorilla", description: "Generates 5 banana per second", count: 0, cost: 870, generates: 5, icon: "🦍" },
+  orangutan: { name: "Orangutan", description: "Generates 10 banana per second", count: 0, cost: 6800, generates: 10, icon: "🦧" },
+  sloth: { name: "Sloth", description: "Generates 100 banana per second", count: 0, cost: 94000, generates: 100, icon: "🦥" },
 };
 
 let lastClickTime = 0;
 let clickRateLimit = 100; //only allow a click every 100ms
 
+document.getElementById("clicker").addEventListener("click", increment);
+
+// Increment banana count
 function increment() {
 
   let currentTime = new Date().getTime();
@@ -19,7 +23,7 @@ function increment() {
   }
   lastClickTime = currentTime;
 
-  bananas++;
+  bananas += 1 * (items.click.count + 1);
   document.getElementById("counter").innerText = bananas;
   gsap.to("#clicker", { scale: 0.8, duration: 0.05, onComplete: resetScale });
   generateBanana();
@@ -29,6 +33,30 @@ function resetScale() {
   gsap.to("#clicker", { scale: 1, duration: 0.1 });
 }
 
+// Update banana count
+function updateBananaCount() {
+  document.getElementById("counter").innerText = bananas;
+}
+
+let targetBananas = bananas;
+
+setInterval(() => {
+  for (let item in items) {
+    if (items[item].count > 0) {
+      targetBananas += items[item].count * items[item].generates;
+    }
+  }
+}, 1000);
+
+setInterval(() => {
+  if (bananas < targetBananas) {
+    bananas++;
+    updateBananaCount();
+    generateBanana();
+  }
+}, 10);
+
+// Animation
 function generateBanana() {
   // Create a new div for the banana emoji
   let banana = document.createElement("div");
@@ -55,63 +83,89 @@ function generateBanana() {
   });
 }
 
-document.getElementById("clicker").addEventListener("click", increment);
-
+// Shop
+let shop = document.querySelector(".shop");
 for (let item in items) {
-  document.getElementById(item).addEventListener("click", () => {
-    if (bananas >= items[item].cost) {
-      bananas -= items[item].cost;
-      items[item].count++;
-      items[item].cost = Math.floor(items[item].cost * 1.05); // Increase cost by 5%
-      updateShopItem(item);
-      updateBananaCount();
-      generateItem(item);
-    }
-    else {
-      let button = document.getElementById(item);
-      button.classList.add('blink-red');
-      setTimeout(() => {
-        button.classList.remove('blink-red');
-      }, 100);
-    }
-  });
+  let shopItem = document.createElement("div");
+  shopItem.className = "shop-item";
+
+  let iconContainer = document.createElement("div");
+  iconContainer.className = "icon-container";
+
+  let icon = document.createElement("span");
+  icon.textContent = items[item].icon;
+  iconContainer.appendChild(icon);
+
+
+  let itemDetails = document.createElement("div");
+  itemDetails.className = "item-details";
+
+  let title = document.createElement("h3");
+  title.textContent = items[item].name
+  itemDetails.appendChild(title);
+
+  let description = document.createElement("p");
+  description.textContent = items[item].description;
+  itemDetails.appendChild(description);
+
+  let cost = document.createElement("button");
+  cost.id = item;
+  cost.addEventListener("click", () => buyItem(item));
+  cost.textContent = items[item].cost + "🍌";
+  itemDetails.appendChild(cost);
+
+  shopItem.appendChild(iconContainer);
+  shopItem.appendChild(itemDetails);
+  shop.appendChild(shopItem);
 }
 
-function updateBananaCount() {
-  document.getElementById("counter").innerText = bananas;
+function buyItem(item) {
+  if (bananas >= items[item].cost) {
+    bananas -= items[item].cost;
+    targetBananas -= items[item].cost;
+    items[item].count++;
+    items[item].cost = Math.floor(items[item].cost * 1.05); // Increase cost by 5%
+    updateShopItem(item);
+    updateBananaCount();
+
+    if (items[item].generates > 0) {
+      generateItem(item);
+    }
+  }
+  else {
+    let button = document.getElementById(item);
+    button.classList.add('blink-red');
+    setTimeout(() => {
+      button.classList.remove('blink-red');
+    }, 100);
+  }
 }
 
 function updateShopItem(item) {
   let button = document.getElementById(item);
   document.getElementById(item).innerText = items[item].cost + "🍌";
 
-  let itemName = item.charAt(0).toUpperCase() + item.slice(1);
-
   let title = button.closest('.item-details').querySelector('h3');
-  title.innerText = itemName + " " + items[item].count + "x";
+  title.innerText = items[item].name + " " + items[item].count + "x";
 }
 
+// Display items
 function generateItem(item) {
   let button = document.getElementById('clicker');
-  let radius = 200;
-
-  // Get count of this item type
   let count = items[item].count;
-
-  let angle = (count / (count + 1)) * 2 * Math.PI;
-  let x = radius * Math.cos(angle);
-  let y = radius * Math.sin(angle);
 
   let newItem = document.createElement("span");
   newItem.innerText = items[item].icon;
   newItem.style.fontSize = "3rem";
+  newItem.style.display = "inline-block";
 
-  document.querySelector(".game").appendChild(newItem);
+  document.querySelector(".items").appendChild(newItem);
+
+  gsap.to(newItem, {
+    y: "-15px",
+    repeat: -1,
+    yoyo: true,
+    duration: 0.2,
+    ease: "power1.inOut"
+  });
 }
-
-setInterval(() => {
-  for (let item in items) {
-    bananas += items[item].count * items[item].generates;
-  }
-  updateBananaCount();
-}, 1000);
