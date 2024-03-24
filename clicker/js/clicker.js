@@ -41,6 +41,7 @@ function updateBananaCount() {
 let targetBananas = bananas;
 
 setInterval(() => {
+  targetBananas = bananas;
   for (let item in items) {
     if (items[item].count > 0) {
       targetBananas += items[item].count * items[item].generates;
