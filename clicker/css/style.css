@@ -67,6 +67,7 @@
 .shop .shop-item {
   display: grid;
   grid-template-rows: auto auto;
+  border-radius: 10px;
 }
 .shop .shop-item .icon-container {
   grid-column: 1;
@@ -89,19 +90,24 @@
   background-color: #F0ECE5;
   color: #161A30;
 }
+.shop .shop-item .item-details .blink-red {
+  background-color: rgb(231, 66, 66);
+}
+.shop .shop-item .item-details .blink-red:hover {
+  background-color: rgb(231, 66, 66);
+}
+.shop .shop-item-hidden {
+  background-color: #161A30;
+}
+.shop .shop-item-hidden .item-details {
+  visibility: hidden;
+}
 
 .clicker {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.blink-red {
-  background-color: rgb(231, 66, 66) !important;
-}
-.blink-red:hover {
-  background-color: rgb(231, 66, 66) !important;
 }
 
 #clicker {

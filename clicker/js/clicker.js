@@ -1,11 +1,12 @@
 let bananas = 0;
 
 let items = {
-  click: { name: "Click Force", description: "Generate 1 banana more per click", count: 0, cost: 50, generates: 0, icon: "✖️" },
-  monkey: { name: "Monkey", description: "Generates 1 banana per second", count: 0, cost: 100, generates: 1, icon: "🐒" },
-  gorilla: { name: "Gorilla", description: "Generates 5 banana per second", count: 0, cost: 870, generates: 5, icon: "🦍" },
-  orangutan: { name: "Orangutan", description: "Generates 10 banana per second", count: 0, cost: 6800, generates: 10, icon: "🦧" },
-  sloth: { name: "Sloth", description: "Generates 100 banana per second", count: 0, cost: 94000, generates: 100, icon: "🦥" },
+  click: { name: "Click Force", description: "Generate 1 banana more per click", count: 0, cost: 50, generates: 0, lock: false, icon: "✖️" },
+  monkey: { name: "Monkey", description: "Generates 1 banana per second", count: 0, cost: 100, generates: 1, lock: false, icon: "🐒" },
+  gorilla: { name: "Gorilla", description: "Generates 8 banana per second", count: 0, cost: 870, generates: 8, lock: true, icon: "🦍" },
+  orangutan: { name: "Orangutan", description: "Generates 34 banana per second", count: 0, cost: 6800, generates: 34, lock: true, icon: "🦧" },
+  sloth: { name: "Sloth", description: "Generates 492 banana per second", count: 0, cost: 94000, generates: 492, lock: true, icon: "🦥" },
+  parrot: { name: "Parrot", description: "Generates 1356 banana per second", count: 0, cost: 7145600, generates: 1356, lock: true, icon: "🦜" },
 };
 
 let lastClickTime = 0;
@@ -59,7 +60,6 @@ setInterval(() => {
 
 // Animation
 function generateBanana() {
-  // Create a new div for the banana emoji
   let banana = document.createElement("div");
   banana.innerText = "🍌";
   banana.style.position = "absolute";
@@ -71,14 +71,12 @@ function generateBanana() {
 
   document.body.appendChild(banana);
 
-  // Animate the banana to move in a random direction
   gsap.to(banana, {
     x: Math.random() * 200 - 100,
     y: Math.random() * 200 - 100,
     opacity: 0,
     duration: 2,
     onComplete: function () {
-      // Remove the banana when the animation is complete
       document.body.removeChild(banana);
     }
   });
@@ -94,9 +92,13 @@ for (let item in items) {
   iconContainer.className = "icon-container";
 
   let icon = document.createElement("span");
-  icon.textContent = items[item].icon;
+  if (items[item].lock === true) {
+    icon.textContent = "🔒";
+  }
+  else {
+    icon.textContent = items[item].icon;
+  }
   iconContainer.appendChild(icon);
-
 
   let itemDetails = document.createElement("div");
   itemDetails.className = "item-details";
@@ -115,10 +117,25 @@ for (let item in items) {
   cost.textContent = items[item].cost + "🍌";
   itemDetails.appendChild(cost);
 
+  if (items[item].lock === true) {
+    shopItem.classList.add("shop-item-hidden");
+  }
+
   shopItem.appendChild(iconContainer);
   shopItem.appendChild(itemDetails);
   shop.appendChild(shopItem);
 }
+
+function unlokItem(item) {
+  let button = document.getElementById(item);
+  let itemDetails = button.closest('.item-details');
+  let shopItem = itemDetails.closest('.shop-item');
+  shopItem.classList.remove('shop-item-hidden');
+  let icon = shopItem.querySelector('.icon-container span');
+  icon.textContent = items[item].icon;
+}
+
+let keys = Object.keys(items);
 
 function buyItem(item) {
   if (bananas >= items[item].cost) {
@@ -128,6 +145,18 @@ function buyItem(item) {
     items[item].cost = Math.floor(items[item].cost * 1.05); // Increase cost by 5%
     updateShopItem(item);
     updateBananaCount();
+
+    let currentIndex = keys.indexOf(item);
+    let maxIndex = keys.length;
+    let nextItemKey = keys[currentIndex + 1];
+    let nextItem = items[nextItemKey];
+
+    if (maxIndex > currentIndex + 1) {
+      if (nextItem.lock === true) {
+        console.log(maxIndex, currentIndex + 1);
+        unlokItem(nextItemKey);
+      }
+    }
 
     if (items[item].generates > 0) {
       generateItem(item);
