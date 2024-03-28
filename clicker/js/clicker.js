@@ -1,4 +1,4 @@
-let bananas = 99999999;
+let bananas = 0;
 
 let items = {
   0: { name: "Click Force", description: "Generate 1 banana more per click", count: 0, cost: 50, generates: 0, lock: false, icon: "✖️" },
