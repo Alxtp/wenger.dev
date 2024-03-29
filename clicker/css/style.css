@@ -58,19 +58,16 @@
   border-radius: 15px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #B6BBC4;
   border-radius: 0 10px 10px 0;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #707070;
   border-radius: 10px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #575757;
   border-radius: 10px;
@@ -86,8 +83,18 @@
   border: #B6BBC4 3px solid;
   padding: 2rem;
   gap: 1rem;
-  max-height: 650px;
+  max-height: 300px;
   overflow-y: auto;
+}
+@media (min-width: 640px) {
+  .shop {
+    max-height: 400px;
+  }
+}
+@media (min-width: 768px) {
+  .shop {
+    max-height: 650px;
+  }
 }
 .shop .shop-item {
   display: grid;
@@ -143,23 +150,27 @@
 .modal .modal-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   position: relative;
   background-color: #31304D;
   color: #B6BBC4;
   padding: 20px;
-  width: 40%;
+  width: auto;
   height: auto;
   border-radius: 15px;
-  margin: 10% auto;
+  margin: 10%;
+}
+@media (min-width: 768px) {
+  .modal .modal-content {
+    margin: 10% 25%;
+  }
 }
 .modal .modal-content h2 {
   font-size: 2rem;
   padding: 10px;
 }
 .modal .modal-content h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   padding: 10px;
 }
 .modal .modal-content button {

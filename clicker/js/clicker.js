@@ -1,24 +1,30 @@
 let bananas = 0;
-
+let targetBananas = bananas;
+let won = false;
 let items = {
   0: { name: "Click Force", description: "Generate 1 banana more per click", count: 0, cost: 50, generates: 0, lock: false, icon: "✖️" },
   1: { name: "Monkey", description: "Generates 1 banana per second", count: 0, cost: 150, generates: 1, lock: false, icon: "🐒" },
-  2: { name: "Gorilla", description: "Generates 8 banana per second", count: 0, cost: 900, generates: 9, lock: true, icon: "🦍" },
-  3: { name: "Orangutan", description: "Generates 34 banana per second", count: 0, cost: 6300, generates: 63, lock: true, icon: "🦧" },
-  4: { name: "Sloth", description: "Generates 492 banana per second", count: 0, cost: 44100, generates: 441, lock: true, icon: "🦥" },
-  5: { name: "Parrot", description: "Generates 1356 banana per second", count: 0, cost: 132300, generates: 1323, lock: true, icon: "🦜" },
-  6: { name: "Flamingo", description: "Generates 1356 banana per second", count: 0, cost: 396900, generates: 3969, lock: true, icon: "🦩" },
+  2: { name: "Gorilla", description: "Generates 9 banana per second", count: 0, cost: 900, generates: 9, lock: true, icon: "🦍" },
+  3: { name: "Orangutan", description: "Generates 63 banana per second", count: 0, cost: 6300, generates: 63, lock: true, icon: "🦧" },
+  4: { name: "Sloth", description: "Generates 441 banana per second", count: 0, cost: 44100, generates: 441, lock: true, icon: "🦥" },
+  5: { name: "Parrot", description: "Generates 1323 banana per second", count: 0, cost: 132300, generates: 1323, lock: true, icon: "🦜" },
+  6: { name: "Flamingo", description: "Generates 3969 banana per second", count: 0, cost: 396900, generates: 3969, lock: true, icon: "🦩" },
+  7: { name: "Butterfly", description: "Generates 19845 banana per second", count: 0, cost: 1190700, generates: 19845, lock: true, icon: "🦋" },
 };
-
+let keys = Object.keys(items);
 let lastClickTime = 0;
-let clickRateLimit = 100; //only allow a click every 100ms
+let clickRateLimit = 100; // Only allow a click every 100ms
+let body = document.querySelector("body");
+let clicker = document.getElementById("clicker");
+clicker.addEventListener("click", increment);
+let counter = document.getElementById("counter");
 
-document.getElementById("clicker").addEventListener("click", increment);
+startGame();
 
 // Increment banana count
 function increment() {
-
   let currentTime = new Date().getTime();
+
   if (currentTime - lastClickTime < clickRateLimit) {
     console.log("Rate limited");
     return;
@@ -26,7 +32,7 @@ function increment() {
   lastClickTime = currentTime;
 
   bananas += 1 * (items[0].count + 1);
-  document.getElementById("counter").innerText = bananas;
+  counter.innerText = bananas;
   gsap.to("#clicker", { scale: 0.8, duration: 0.05, onComplete: resetScale });
   generateBanana();
 }
@@ -37,45 +43,45 @@ function resetScale() {
 
 // Update banana count
 function updateBananaCount() {
-  document.getElementById("counter").innerText = bananas;
+  counter.innerText = bananas;
 }
 
-let targetBananas = bananas;
-let won = false;
-
+// Auto generate bananas
 setInterval(() => {
   targetBananas = bananas;
-  if (won === false && bananas >= 100000000) {
+  if (won === false && bananas >= 1000000000) {
     finishGame();
     won = true;
   }
   for (let item in items) {
     if (items[item].count > 0) {
       targetBananas += items[item].count * items[item].generates;
+      generateBanana();
     }
   }
 }, 1000);
 
 setInterval(() => {
   if (bananas < targetBananas) {
-    bananas++;
+    let increment = Math.max(1, Math.floor((targetBananas - bananas) / 100));
+    bananas += increment;
     updateBananaCount();
-    generateBanana();
   }
 }, 10);
 
-// Animation
+// Clicker Animation
 function generateBanana() {
   let banana = document.createElement("div");
   banana.innerText = "🍌";
   banana.style.position = "absolute";
-  banana.style.fontSize = "2em";
+  banana.style.fontSize = "3rem";
+  banana.style.userSelect = "none";
 
   let button = document.getElementById("clicker");
   banana.style.left = (button.offsetLeft + button.offsetWidth / 2) + "px";
   banana.style.top = (button.offsetTop + button.offsetHeight / 2) + "px";
 
-  document.body.appendChild(banana);
+  body.appendChild(banana);
 
   gsap.to(banana, {
     x: Math.random() * 200 - 100,
@@ -83,12 +89,12 @@ function generateBanana() {
     opacity: 0,
     duration: 2,
     onComplete: function () {
-      document.body.removeChild(banana);
+      body.removeChild(banana);
     }
   });
 }
 
-// Shop
+// Item Shop
 let shop = document.querySelector(".shop");
 for (let item in items) {
   let shopItem = document.createElement("div");
@@ -103,8 +109,6 @@ for (let item in items) {
   let cost = document.createElement("button");
   cost.id = item;
   cost.addEventListener("click", () => buyItem(item));
-
-
 
   if (items[item].lock === true) {
     shopItem.classList.add("shop-item-hidden");
@@ -129,6 +133,7 @@ for (let item in items) {
   shop.appendChild(shopItem);
 }
 
+// Unlock item
 function unlockItem(item) {
   let button = document.getElementById(item);
   let itemDetails = button.closest('.item-details');
@@ -146,8 +151,7 @@ function unlockItem(item) {
   items[item].lock = false;
 }
 
-// Item Modal
-let body = document.querySelector("body");
+// Item Unlock Modal
 function unlockItemModal(item) {
   let modal = document.createElement("div");
   modal.className = "modal";
@@ -178,8 +182,7 @@ function unlockItemModal(item) {
   tl.to(icon, { rotation: 20, duration: 0.3, ease: "power1.inOut" })
 }
 
-let keys = Object.keys(items);
-
+// Buy item
 function buyItem(item) {
   if (bananas >= items[item].cost) {
     bananas -= items[item].cost;
@@ -214,6 +217,7 @@ function buyItem(item) {
   }
 }
 
+// Update shop item
 function updateShopItem(item) {
   let button = document.getElementById(item);
   document.getElementById(item).innerText = items[item].cost + "🍌";
@@ -224,13 +228,11 @@ function updateShopItem(item) {
 
 // Display items
 function generateItem(item) {
-  let button = document.getElementById('clicker');
-  let count = items[item].count;
-
   let newItem = document.createElement("span");
   newItem.innerText = items[item].icon;
   newItem.style.fontSize = "3rem";
   newItem.style.display = "inline-block";
+  newItem.style.userSelect = "none";
 
   document.querySelector(".items").appendChild(newItem);
 
@@ -243,7 +245,34 @@ function generateItem(item) {
   });
 }
 
-// Finish Modal
+// Game Start Modal
+function startGame() {
+  let modal = document.createElement("div");
+  modal.className = "modal";
+  let modalContent = document.createElement("div");
+  modalContent.className = "modal-content";
+  let title = document.createElement("h1");
+  let icon = document.createElement("span");
+  let comment = document.createElement("p");
+  let button = document.createElement("button");
+
+  button.addEventListener("click", () => {
+    body.removeChild(modal);
+  });
+
+  button.textContent = "Let's start!";
+  title.textContent = "Welcome!";
+  comment.textContent = "Welcome to the Banana Clicker Game! 🍌 Click the banana to earn more bananas. Use your bananas to buy monkeys, gorillas, and other wild animals to generate more bananas for you. The goal is to reach 1'000'000'000 bananas! Good luck!";
+  icon.textContent = "🍀";
+  modalContent.appendChild(title);
+  modalContent.appendChild(comment);
+  modalContent.appendChild(icon);
+  modalContent.appendChild(button);
+  modal.appendChild(modalContent);
+  body.appendChild(modal);
+}
+
+// Finish Game Modal
 function finishGame() {
   let modal = document.createElement("div");
   modal.className = "modal";
@@ -260,7 +289,7 @@ function finishGame() {
 
   button.textContent = "Continue!";
   title.textContent = "Congratulations!";
-  comment.textContent = "Wow, 100'000'000 bananas? That's bananas! 🍌 You've officially earned the title of 'Supreme Banana Clicker Champion'—a prestigious honor only bestowed upon those brave enough to waste copious amounts of time on a fruitless waste of time. Remember, while you're basking in banana glory, the rest of us are wondering if you've gone completely banana!";
+  comment.textContent = "Wow, 1'000'000'000 bananas? That's bananas! 🍌 You've officially earned the title of 'Supreme Banana Clicker Champion'—a prestigious honor only bestowed upon those brave enough to waste copious amounts of time on a fruitless waste of time. Remember, while you're basking in banana glory, the rest of us are wondering if you've gone completely banana!";
   icon.textContent = "🎉🎉🎉";
   modalContent.appendChild(title);
   modalContent.appendChild(comment);

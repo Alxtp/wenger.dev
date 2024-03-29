@@ -12,7 +12,6 @@ $secondary: #31304D;
   margin-top: 0.5rem;
   cursor: pointer;
 
-
   &:hover {
     background-color: $on_primary;
     color: $primary;
@@ -22,16 +21,19 @@ $secondary: #31304D;
 @mixin modal-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   position: relative;
   background-color: $secondary;
   color: $on_secondary;
   padding: 20px;
-  width: 40%;
+  width: auto;
   height: auto;
   border-radius: 15px;
-  margin: 10% auto;
+  margin: 10%;
+
+  @media (min-width: 768px) {
+    margin: 10% 25%;
+  }
 
   h2 {
     font-size: 2rem;
@@ -39,7 +41,7 @@ $secondary: #31304D;
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     padding: 10px;
   }
 
@@ -68,56 +70,44 @@ $secondary: #31304D;
 }
 
 @media only screen and (min-width: 640px) {
-
   /* tablet */
   .col-s-1 {
     width: 16.66%;
   }
-
   .col-s-2 {
     width: 33.33%;
   }
-
   .col-s-3 {
     width: 50%;
   }
-
   .col-s-4 {
     width: 66.66%;
   }
-
   .col-s-5 {
     width: 83.33%;
   }
-
   .col-s-6 {
     width: 100%;
   }
 }
 
 @media only screen and (min-width: 768px) {
-
   /* desktop */
   .col-1 {
     width: 16.66%;
   }
-
   .col-2 {
     width: 33.33%;
   }
-
   .col-3 {
     width: 50%;
   }
-
   .col-4 {
     width: 66.66%;
   }
-
   .col-5 {
     width: 83.33%;
   }
-
   .col-6 {
     width: 100%;
   }
@@ -128,19 +118,16 @@ $secondary: #31304D;
   border-radius: 15px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: $on_secondary;
   border-radius: 0 10px 10px 0;
 }
- 
-/* Handle */
+
 ::-webkit-scrollbar-thumb {
   background: #707070;
   border-radius: 10px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #575757;
   border-radius: 10px;
@@ -156,8 +143,16 @@ $secondary: #31304D;
   border: $on_secondary 3px solid;
   padding: 2rem;
   gap: 1rem;
-  max-height: 650px; // Set the maximum height
+  max-height: 300px;
   overflow-y: auto;
+
+  @media (min-width: 640px) {
+    max-height: 400px;
+  }
+
+  @media (min-width: 768px) {
+    max-height: 650px;
+  }
 
   .shop-item {
     display: grid;
@@ -169,7 +164,6 @@ $secondary: #31304D;
       grid-column: 1;
       font-size: 3em;
       justify-self: left;
-
     }
 
     .item-details {
