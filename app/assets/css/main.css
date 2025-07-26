@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+.container {
+    @apply min-h-screen max-w-screen p-15;
+}
+
+h1 {
+    @apply text-4xl mb-7 underline underline-offset-10 decoration-primary;
+}
