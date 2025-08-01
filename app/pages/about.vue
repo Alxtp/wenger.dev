@@ -37,7 +37,7 @@ useHead({
 
         <div class="text-center pt-8">
             <UButton
-                to="https://github.com/GreedTP"
+                to="https://github.com/Alxtp"
                 target="_blank"
                 icon="i-lucide-github"
                 size="lg"
