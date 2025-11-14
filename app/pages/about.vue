@@ -5,7 +5,7 @@ useHead({
 </script>
 
 <template>
-    <div class="container p-10 lg:w-1/2 md:w-full">
+    <div class="container lg:w-1/2">
         <h1>About Me</h1>
         <div class="space-y-5 text-lg">
             <p>
