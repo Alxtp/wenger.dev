@@ -9,29 +9,28 @@ useHead({
         <h1>About Me</h1>
         <div class="space-y-5 text-lg">
             <p>
-                Hi! I'm a platform engineer who likes to express his creativity
-                and constantly seeks to learn new things. I'm experienced in
-                building cloud infrastructure in an automated way and always
-                trying to find the optimal architecture. My next goal? To become
-                an architect!
+                Hi! I'm a platform engineer who likes to learn new things and stay up-to-date on the latest technologies. 
+		I'm experienced in building cloud infrastructure in an automated way and always
+                trying to find the optimal architecture.
+		My next goal? To become an architect!
             </p>
 
             <p>
                 I love creating
-                <strong>simple, lightweight, modern and secure</strong>
+                <strong>lightweight, modern and secure</strong>
                 solutions. I strongly believe in simplicity, which is mostly
                 also the most secure, and I absolutely hate bloat.
             </p>
 
             <p>
                 When I'm not working, I do sports and also like self-hosting
-                containers on my Raspberry Pi.
+                various containers, like the one, which runs this site.
             </p>
 
             <p>
                 I think that knowledge should be shared and that the best things
-                are built by passion and shared with everyone. Also, most of my
-                work, even when not the best, is publicly available.
+                are built by passion and shared with everyone. Thats why I'm a fan of FOSS and
+		projects from the CNCF. Most of my freetime "work" is open source too. 
             </p>
         </div>
 

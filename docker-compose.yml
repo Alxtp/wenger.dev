@@ -2,6 +2,7 @@ services:
   node:
     build:
       dockerfile: Containerfile
+      network: host
     restart: unless-stopped
     labels:
       - traefik.enable=true
